@@ -3,6 +3,8 @@ import fetch from 'node-fetch';
 const app = express();
 const PORT = 3080;
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
 const API_KEY = 'RGAPI-1002579b-3050-4e73-b3e6-24e46c15cdf3';
 app.get('/api/getLevel/:name', async (req, res) => {
     let name = req.params.name;
