@@ -16,7 +16,6 @@ app.get('/api/getLevel/:name', async (req, res) => {
     let name = req.params.name;
     let link = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + name + '?api_key='+ API_KEY;
     let level = await getLevel(link);
-    console.log('asdfasfdf');
     res.send({
         "status": "success",
         level: level
