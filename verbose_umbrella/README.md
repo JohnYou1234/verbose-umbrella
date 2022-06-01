@@ -1,6 +1,6 @@
 ## React App
 
-The react app portion
+The front end portion
 
 ## Future Patches
 Add loading instead of setting intial to 0
