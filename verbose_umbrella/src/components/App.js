@@ -7,7 +7,6 @@ import {
   Route,
 } from "react-router-dom";
 function App(props) {
-  const apiKey = props.apiKey;
     return (
     <div>
       <BrowserRouter>
@@ -16,7 +15,7 @@ function App(props) {
           <Route path="/results/:name" element={
           <div>
             <Search />
-            <Results apiKey={apiKey}/>
+            <Results/>
           </div>
           } />
         </Routes>
