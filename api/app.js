@@ -1,8 +1,14 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import { dirname }  from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 const app = express();
-const PORT = 3080;
+const PORT = process.env.PORT || 3080;
 app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 const API_KEY = 'RGAPI-1002579b-3050-4e73-b3e6-24e46c15cdf3';
