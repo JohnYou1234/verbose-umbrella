@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const router = express.Router();
 
-const API_KEY = 'RGAPI-1002579b-3050-4e73-b3e6-24e46c15cdf3';
+const API_KEY = 'RGAPI-6179f2df-dc90-4c37-a73c-faeae96fa1bd';
 
 router.get('/getLevel/:name', async (req, res) => {
     let name = req.params.name;
