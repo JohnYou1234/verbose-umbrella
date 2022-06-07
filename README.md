@@ -1,4 +1,4 @@
-# Fix.GG
+# Umbrella
 
 A way to spoof your League of Legends match history to flex on your friends
 
