@@ -15,7 +15,6 @@ const __dirname = dirname(__filename);
 app.use(express.static(path.resolve(__dirname, '../verbose_umbrella/build')));
 dotenv.config({ path: path.join(__dirname, '.env') });
 const API_KEY = process.env.RIOT_KEY
-console.log(API_KEY);
 
 app.use((req, res, next) => {
     req.API_KEY = API_KEY
