@@ -11,21 +11,18 @@ router.get('/getLevel/:name', async (req, res) => {
         await fetch(link)
             .then(resp => resp.json())
             .then(data => {
-                res.send({
-                    'data': data
-                })
-                // if (!data.summonerLevel && data.status.status_code == '404') {
-                //     return 'not found';
-                // } else {
-                //     return data.summonerLevel;
-                // }
+                if (!data.summonerLevel && data.status.status_code == '404') {
+                    return 'not found';
+                } else {
+                    return data.summonerLevel;
+                }
             })
-            // .then(level => {
-            //     res.send({
-            //         'status': 'success',
-            //         'level': level
-            //     })
-            // })
+            .then(level => {
+                res.send({
+                    'status': 'success',
+                    'level': level
+                })
+            })
             .catch(err => {
                 res.send({
                     'status': 'failure',
