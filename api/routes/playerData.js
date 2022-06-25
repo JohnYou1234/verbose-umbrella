@@ -3,9 +3,8 @@ import fetch from 'node-fetch';
 
 const router = express.Router();
 
-const API_KEY = 'RGAPI-da089eff-08da-48c0-ae23-f1d6c9aaa53a';
-
 router.get('/getLevel/:name', async (req, res) => {
+    const API_KEY = req.API_KEY
     let name = req.params.name;
     let link = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + name + '?api_key='+ API_KEY;
     let level = await getLevel(link);
