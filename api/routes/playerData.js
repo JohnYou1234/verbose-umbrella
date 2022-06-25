@@ -37,19 +37,4 @@ router.get('/getLevel/:name', async (req, res) => {
         })
     }
 })
-
-router.get('/getKey', (req, res) => {
-    const API_KEY = req.API_KEY;
-    if (API_KEY) {
-        res.send({
-            'status': 'success',
-            'key': API_KEY
-        })
-    } else {
-        res.send({
-            'status': 'failure'
-        })
-    }
-})
-
 export default router;
