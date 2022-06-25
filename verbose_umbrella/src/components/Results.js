@@ -8,7 +8,7 @@ function Results(props) {
         fetch(link)
             .then(resp => resp.json())
             .then(result => {
-                changeLevel(result.level);
+                console.log(result);
             })
             .catch(err => {
                 console.log(err);
