@@ -8,11 +8,27 @@ router.get('/getLevel/:name', async (req, res) => {
     let name = req.params.name;
     let link = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + name + '?api_key='+ API_KEY;
     try {
-        let level = await getLevel(link);
-        res.send({
-            "status": "success",
-            level: level
-        })
+        await fetch(link)
+            .then(resp => resp.json())
+            .then(data => {
+                if (!data.summonerLevel && data.status.status_code == '404') {
+                    return 'not found';
+                } else {
+                    return data.summonerLevel;
+                }
+            })
+            .then(level => {
+                res.send({
+                    'status': 'success',
+                    'level': level
+                })
+            })
+            .catch(err => {
+                res.send({
+                    'status': 'failure',
+                    'error': err
+                })
+            })
     } catch(err) {
         console.log(err);
         res.send({
@@ -35,23 +51,5 @@ router.get('/getKey', (req, res) => {
         })
     }
 })
-
-async function getLevel(link) {
-    let level = 0;
-    await fetch(link)
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data);
-            if (!data.summonerLevel && data.status.status_code == '404') {
-                level = 'not found';
-            } else {
-                level = data.summonerLevel
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    return level;
-}
 
 export default router;
