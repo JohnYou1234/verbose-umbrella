@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node ./api/app.js",
+    "start": "nodemon ./api/app.js",
     "build": "cd verbose_umbrella && npm install && npm run build"
   },
   "repository": {
@@ -162,6 +162,7 @@
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "strip-json-comments": "^2.0.1",
+    "styled-components": "^5.3.5",
     "supports-color": "^5.5.0",
     "to-readable-stream": "^1.0.0",
     "to-regex-range": "^5.0.1",

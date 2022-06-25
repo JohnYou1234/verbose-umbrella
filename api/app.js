@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // route imports
-import apiRouter from './routes/api.js';
+import apiRouter from './routes/playerData.js';
 const app = express();
 const PORT = process.env.PORT || 3080;
 app.use(express.json());

@@ -1,14 +1,21 @@
 import {Form, Button} from 'react-bootstrap';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components'
 function Search(props) {
     const [summoner, changeSummoner] = useState("");
     let handleChange = (e) => {
       changeSummoner(e.target.value);
     }
     
+    const SearchBtn = ({ classname }) => (
+      <Link className={classname} to={"/results/" + summoner}><Button variant="primary" type="submit">Search</Button></Link>
+    );
+    const StyledBtn = styled(SearchBtn)`
+      font-color: blue;
+    `
     return (
-        <Form className="input" onSubmit={async function(e) {
+        <Form className="search" onSubmit={async function(e) {
             e.preventDefault();
           }}>
             <Form.Control
@@ -18,7 +25,7 @@ function Search(props) {
                 value={summoner}
                 onChange={handleChange}
             />
-            <Link to={"/results/" + summoner}><Button variant="primary" type="submit">Search</Button></Link>
+            <StyledBtn />
           </Form>
     )
 }

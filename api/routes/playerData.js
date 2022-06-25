@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const router = express.Router();
 
-const API_KEY = 'RGAPI-6017c56d-e6fb-483e-be83-3543f98ed466';
+const API_KEY = 'RGAPI-da089eff-08da-48c0-ae23-f1d6c9aaa53a';
 
 router.get('/getLevel/:name', async (req, res) => {
     let name = req.params.name;
@@ -21,7 +21,6 @@ async function getLevel(link) {
         .then(resp => resp.json())
         .then(data => {
             level = data.summonerLevel
-            console.log(level);
         })
         .catch(err => {
             console.log(err);
