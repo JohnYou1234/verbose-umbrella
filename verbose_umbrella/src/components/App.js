@@ -1,6 +1,6 @@
 import Search from './Search.js';
 import Results from './Results.js';
-import {useState} from 'react';
+import {Stack} from 'react-bootstrap';
 import {
   BrowserRouter,
   Routes,
@@ -10,19 +10,14 @@ function App(props) {
     return (
     <div className='input'>
       <BrowserRouter>
+        <Stack>
+        <Search />
         <Routes>
-          <Route path="/" element={
-            <div>
-              <Search/>
-            </div>
-          } />
           <Route path="/results/:name" element={
-          <div>
-            <Search />
-            <Results/>
-          </div>
+              <Results />
           } />
         </Routes>
+        </Stack>
       </BrowserRouter>
     </div>
     )

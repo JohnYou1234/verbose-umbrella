@@ -1,24 +1,29 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Match from './Match.js'
 function Results(props) {
-    const [level, changeLevel] = useState('loading');
+    const [error, changeError] = useState('');
+    const [players, changePlayers] = useState([]);
     let { name } = useParams();
-    let link = '/api/getLevel/' + name;
+    let link = '/api/getMatches/' + name;
     useEffect(() => {
         fetch(link)
             .then(resp => resp.json())
             .then(result => {
-                changeLevel(result.level);
+                if (result.status == 'error') throw result.error
+                changeError('');
+                changePlayers(result.players)
             })
             .catch(err => {
-                console.log(err);
+                changeError(err)
             })
-    })
+    }, [link])
     return (
         <div>
-            <p>
-                This player's level is {level}!
+            <p>                                 
+                {error}
             </p>
+            <Match players={players}/>
         </div>
     )
 }
