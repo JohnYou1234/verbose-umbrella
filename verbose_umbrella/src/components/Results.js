@@ -10,7 +10,7 @@ function Results(props) {
         fetch(link)
             .then(resp => resp.json())
             .then(result => {
-                if (result.status == 'error') throw result.error
+                if (result.status === 'error') throw result.error
                 changeError('');
                 changePlayers(result.players)
             })

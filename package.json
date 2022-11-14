@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./api/app.js",
-    "build": "cd verbose_umbrella && npm install && npm run build"
+    "build": "CI=false && cd verbose_umbrella && npm install && npm run build"
   },
   "repository": {
     "type": "git",
