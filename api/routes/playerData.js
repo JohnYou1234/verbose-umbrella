@@ -6,7 +6,6 @@ const router = express.Router();
 router.get('/getMatches/:name', async (req, res) => {
     const API_KEY = req.API_KEY
     let name = req.params.name;
-    console.log(name);
     let link = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + name + '?api_key='+ API_KEY;
     try {
         await fetch(link)
@@ -38,7 +37,6 @@ router.get('/getMatches/:name', async (req, res) => {
                 })
             })
     } catch(err) {
-        console.log(err);
         res.send({
             'status': 'error',
             'error': "" + err
@@ -48,7 +46,6 @@ router.get('/getMatches/:name', async (req, res) => {
 
 function getPlayerData(players) {
     let playerData = players.map((data, index) => {
-        if (index == 1) console.log(data)
         let player = {
             name: data.summonerName,
             champion: data.championName
