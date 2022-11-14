@@ -187,5 +187,8 @@
     "xdg-basedir": "^4.0.0",
     "yallist": "^4.0.0"
   },
-  "description": ""
+  "description": "",
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  }
 }
