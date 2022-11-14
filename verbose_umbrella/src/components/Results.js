@@ -9,7 +9,8 @@ function Results(props) {
     useEffect(() => {
         fetch(link)
             .then(resp => {
-                if (resp.status != 400) {console.log("world is mine"); throw "Error " + resp.status}
+                if (resp.status !== 200) throw resp.status;
+                return resp;
             })
             .then(resp => resp.json())
             .then(result => {
@@ -23,8 +24,8 @@ function Results(props) {
     }, [link])
     return (
         <div>
-            {error.length > 0 && <p>{error}</p>}
-            {error.length == 0 && <Match players={players}/>}
+            {error && <p>{error + " is the error code"}</p>}
+            {error.length === 0 && <Match players={players}/>}
         </div>
     )
 }
