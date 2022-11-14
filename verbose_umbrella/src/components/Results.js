@@ -8,6 +8,9 @@ function Results(props) {
     let link = '/api/getMatches/' + name;
     useEffect(() => {
         fetch(link)
+            .then(resp => {
+                if (resp.status != 400) {console.log("world is mine"); throw "Error " + resp.status}
+            })
             .then(resp => resp.json())
             .then(result => {
                 if (result.status === 'error') throw result.error
@@ -20,10 +23,8 @@ function Results(props) {
     }, [link])
     return (
         <div>
-            <p>                                 
-                {error}
-            </p>
-            <Match players={players}/>
+            {error.length > 0 && <p>{error}</p>}
+            {error.length == 0 && <Match players={players}/>}
         </div>
     )
 }

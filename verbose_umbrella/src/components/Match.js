@@ -1,6 +1,5 @@
 import {Container, Row, Col} from 'react-bootstrap';
 function Match(props) {
-    console.log("Match Component Loading!");
     const players = props.players;
     let playersDivs = players.map((data, index) => {
         console.log(data);
