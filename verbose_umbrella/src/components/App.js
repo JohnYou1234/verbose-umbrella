@@ -8,15 +8,16 @@ import {
 } from "react-router-dom";
 function App(props) {
     return (
-    <div className='input'>
+    <div>
       <BrowserRouter>
         <Stack>
-        <Search />
-        <Routes>
-          <Route path="/results/:name" element={
-              <Results />
-          } />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Search />}/>
+
+            <Route path="/results/:name" element={
+                <Results />
+            } />
+          </Routes>
         </Stack>
       </BrowserRouter>
     </div>
