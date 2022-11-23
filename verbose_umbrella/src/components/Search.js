@@ -27,18 +27,18 @@ function Search(props) {
     return (
       <div className='search-box'>
         <h2>Verbose Umbrella</h2>
-      <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)}>
-          <Form.Control
-            id='summoner-search'
-            type="text"
-            placeholder='Search Summoner'
-            aria-label="Summoner's Search"
-            onChange={handleInput}
-            value={summoner}
-          />
-          <SearchBtn classes="search-btn"/>
+        <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)}>
+            <Form.Control
+              id='summoner-search'
+              type="text"
+              placeholder='Search Summoner'
+              aria-label="Summoner's Search"
+              onChange={handleInput}
+              value={summoner}
+            />
+            <SearchBtn classes="search-btn"/>
         </InputGroup>
-        </div>
+      </div>
     )
 }
 export default Search;

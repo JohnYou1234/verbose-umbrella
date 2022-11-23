@@ -10,15 +10,13 @@ function App(props) {
     return (
     <div>
       <BrowserRouter>
-        <Stack>
           <Routes>
             <Route path="/" element={<Search />}/>
 
             <Route path="/results/:name" element={
-                <Results />
+                <Results/>
             } />
           </Routes>
-        </Stack>
       </BrowserRouter>
     </div>
     )

@@ -23,9 +23,8 @@ h2 {
   margin-left: 1em !important;
 }
 
-.center {
-  margin: auto;
-  width: 500px;
+.text-center {
+  text-align: center;
 }
 
 .search-box {
@@ -36,4 +35,8 @@ h2 {
 
 .search-btn, #summoner-search {
   border-radius: 20px !important;
+}
+
+.loading-circle {
+  margin-top: 25%;
 }
