@@ -1,35 +1,39 @@
+
 import {Form, Button} from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+
 function Search(props) {
     const [summoner, changeSummoner] = useState("");
-    const [link, changeLink] = useState("");
-    let handleChange = (e) => {
+    const navigate = useNavigate();
+    const handleOnSubmit = (summoner) => { 
+      let path = `newPath`; 
+      if (summoner.length > 0) {
+        path = "/results/" + summoner;
+      } else {
+        path = "";
+      }
+      navigate(path);
+    }
+    let handleInput = (e) => {
       changeSummoner(e.target.value);
     }
-    useEffect(() => {
-      if (summoner.length > 0) {
-        changeLink("/results/" + summoner);
-      } else {
-        changeLink("");
-      }
-    }, [summoner])
-    
+
     const SearchBtn = ({classes}) => (
-      <Link to={link}><Button className={classes} variant="primary" type="submit">Search</Button></Link>
+      <Button onClick={() => handleOnSubmit(summoner)} className={classes} variant="primary" type="submit">Search</Button>
     );
 
     return (
       <div className='search-box'>
         <h2>Verbose Umbrella</h2>
-        <InputGroup className="mb-3">
+      <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)}>
           <Form.Control
             id='summoner-search'
             type="text"
             placeholder='Search Summoner'
             aria-label="Summoner's Search"
-            onChange={handleChange}
+            onChange={handleInput}
             value={summoner}
           />
           <SearchBtn classes="search-btn"/>

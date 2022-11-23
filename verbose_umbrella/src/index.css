@@ -23,6 +23,11 @@ h2 {
   margin-left: 1em !important;
 }
 
+.center {
+  margin: auto;
+  width: 500px;
+}
+
 .search-box {
   width: 35%;
   margin-top: 20%;
