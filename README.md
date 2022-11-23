@@ -1,7 +1,5 @@
-# Umbrella
+# Verbose Umbrella
 
-A way to spoof your League of Legends match history to flex on your friends
+League of legends match history stat viewer
 
 ## Notes
-
-I didn't get anything to work besides showing a level
