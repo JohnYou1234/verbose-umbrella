@@ -1,5 +1,6 @@
 import Search from './Search.js';
 import Results from './Results.js';
+import Header from './Header.js'
 import {Stack} from 'react-bootstrap';
 import {
   BrowserRouter,
@@ -9,6 +10,7 @@ import {
 function App(props) {
     return (
     <div>
+      <Header />
       <BrowserRouter>
           <Routes>
             <Route path="/" element={<Search />}/>

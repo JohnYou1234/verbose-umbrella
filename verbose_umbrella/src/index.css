@@ -40,3 +40,9 @@ h2 {
 .loading-circle {
   margin-top: 25%;
 }
+
+.header {
+  background-color: teal;
+  height: 50px;
+  width: 100%;
+}

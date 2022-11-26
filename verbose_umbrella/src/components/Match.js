@@ -1,25 +1,24 @@
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Stack} from 'react-bootstrap';
 function Match(props) {
-    const players = props.players;
-    
-    let playersDivs = players.map((data, index) => {
-        let kdaString = data.kills + "/" + data.deaths + "/" + data.assists;
-        return (
-            <p key={index}>{data.name + " " + data.champion + " " + kdaString}</p>
-        )
-    })
+    const gameData = props.gameData;
+    let mainPlayer = gameData.playerData.mainPlayer;
+    let gameInfo = gameData.gameInfo;
     return (
         <Container>
             <Row>
                 <Col>
-                    <div>                           
-                        {playersDivs.slice(0, 5)}
-                    </div>
+                    <Stack>                           
+                        <p>{mainPlayer.victory ? "Victory" : "Defeat"}</p>
+                        <p>{gameInfo.matchId}</p>
+                        <p>{gameInfo.gameTimer}</p>
+                        <p>{gameInfo.gameMode}</p>
+                    </Stack>
                 </Col>
                 <Col>
-                    <div>
-                     {playersDivs.slice(5)}
-                    </div>
+                    <Stack>
+                        <p>{mainPlayer.kills + "/" + mainPlayer.deaths + "/" + mainPlayer.assists}</p>
+                        <p>{mainPlayer.champion}</p>
+                    </Stack>
                 </Col>
             </Row>
         </Container>
