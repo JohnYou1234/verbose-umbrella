@@ -1,0 +1,35 @@
+.match {
+    margin-top: 2rem !important; 
+    padding: 10px;
+    width: 40%;
+    margin: auto;
+  }
+  
+  .player-champ {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .victory {
+    background-color: rgba(97, 139, 231, 0.788);
+  }
+  
+  .defeat {
+    background-color: rgba(247, 118, 118, 0.842)
+  }
+  
+  .ss-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .item-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .ally-icon {
+    width: 20px;
+    height: 20px;
+  }
+  

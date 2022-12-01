@@ -77,6 +77,9 @@ function getGameData(data) {
     gameData['gameMode'] = info.gameMode;
     gameData['gameTimer'] = info.gameDuration;
 
+    let unixTimestamp = parseInt(info.gameEndTimestamp);
+    let date = new Date(unixTimestamp);
+    gameData['gameDate'] = date.toLocaleDateString("en-US")
     return gameData;
 }
 export default router;
