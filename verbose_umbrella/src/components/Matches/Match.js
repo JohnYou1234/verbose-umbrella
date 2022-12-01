@@ -6,7 +6,7 @@ function Match(props) {
     // let gameTimer = parseGameTime(gameInfo.gameTimer);
     // let gameStatus = mainPlayer.victory ? "victory" : "defeat";
     return (
-        <Stack gap={3} className={"match victory"} direction="horizontal">
+        <Stack gap={3} className={"match victory justify-content-center"} direction="horizontal">
             <div>
                 <Stack gap={1}>
                     <div>Victory</div>       
@@ -54,7 +54,7 @@ function Match(props) {
             </div>
 
             <div>
-                <Stack gap={1}>
+                <Stack gap={1} className="ally-team">
                     <Stack direction='horizontal' gap={1}>
                         <Image className='ally-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'} alt='gangplank' />
                         Summoner 1
@@ -79,7 +79,7 @@ function Match(props) {
             </div>
 
             <div>
-                <Stack gap={1}>
+                <Stack gap={1} className="enemy-team">
                     <Stack direction='horizontal' gap={1}>
                         <Image className='ally-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Aatrox.png'} alt='gangplank' />
                         Summoner 1
