@@ -6,9 +6,13 @@ const router = express.Router();
 // import runes from './data/runes.json' assert {type: 'json'}
 // import champions from './data/champions.json' assert {type: 'json'}
 
-const { default: runes } = await import('./data/runes.json', {assert: {type: "json",},});
-const { default: summonerSpells } = await import('./data/summonerSpells.json', {assert: {type: "json",},});
-const { default: champions } = await import('./data/champions.json', {assert: {type: "json",},});
+// const { default: runes } = await import('./data/runes.json', {assert: {type: "json",},});
+// const { default: summonerSpells } = await import('./data/summonerSpells.json', {assert: {type: "json",},});
+// const { default: champions } = await import('./data/champions.json', {assert: {type: "json",},});
+
+import summonerSpells from './data/summonerSpells.json' 
+import runes from './data/runes.json' 
+import champions from './data/champions.json'
 
 router.get('/getMatchData/:matchId/:puuid', async (req, res) => {
     const API_KEY = req.API_KEY
