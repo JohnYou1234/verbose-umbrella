@@ -2,15 +2,19 @@ import express from 'express';
 import fetch from 'node-fetch';
 const router = express.Router();
 
-import summonerSpells from './data/summonerSpells.json' assert {type: 'json'}
-import runes from './data/runes.json' assert {type: 'json'}
-import champions from './data/champions.json' assert {type: 'json'}
+// import summonerSpells from './data/summonerSpells.json' assert {type: 'json'}
+// import runes from './data/runes.json' assert {type: 'json'}
+// import champions from './data/champions.json' assert {type: 'json'}
 
+const { default: runes } = await import('./data/runes.json', {assert: {type: "json",},});
+const { default: summonerSpells } = await import('./data/summonerSpells.json', {assert: {type: "json",},});
+const { default: champions } = await import('./data/champions.json', {assert: {type: "json",},});
 
 router.get('/getMatchData/:matchId/:puuid', async (req, res) => {
     const API_KEY = req.API_KEY
     let link = 'https://americas.api.riotgames.com/lol/match/v5/matches/' + req.params.matchId + '?api_key=' + API_KEY;
     let id = req.params.puuid;
+    
     try {
         await fetch(link)
             .then(resp => resp.json())

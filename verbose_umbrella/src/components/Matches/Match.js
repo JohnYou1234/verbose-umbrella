@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Container, Row, Col, Stack, Image} from 'react-bootstrap';
+import {Stack, Image} from 'react-bootstrap';
 
 function Match(props) {
     const [isLoading, changeLoad] = useState(true);
