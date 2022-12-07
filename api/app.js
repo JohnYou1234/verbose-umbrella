@@ -13,7 +13,6 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use(express.static(path.resolve(__dirname, '../verbose_umbrella/build')));
-dotenv.config({ path: path.join(__dirname, '.env') });
 const API_KEY = process.env.RIOT_KEY
 
 app.use((req, res, next) => {
