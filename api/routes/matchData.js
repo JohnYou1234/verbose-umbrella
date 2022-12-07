@@ -2,14 +2,6 @@ import express from 'express';
 import fetch from 'node-fetch';
 const router = express.Router();
 
-// import summonerSpells from './data/summonerSpells.json' assert {type: 'json'}
-// import runes from './data/runes.json' assert {type: 'json'}
-// import champions from './data/champions.json' assert {type: 'json'}
-
-// const { default: runes } = await import('./data/runes.json', {assert: {type: "json",},});
-// const { default: summonerSpells } = await import('./data/summonerSpells.json', {assert: {type: "json",},});
-// const { default: champions } = await import('./data/champions.json', {assert: {type: "json",},});
-
 import summonerSpells from './data/summonerSpells.json' 
 import runes from './data/runes.json' 
 import champions from './data/champions.json'
