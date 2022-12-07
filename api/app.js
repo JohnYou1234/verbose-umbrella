@@ -2,7 +2,6 @@ import express from 'express';
 import { dirname }  from 'path';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
 
 // route imports
 import playerRouter from './routes/playerData.js';
