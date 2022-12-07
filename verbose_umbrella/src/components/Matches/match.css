@@ -1,7 +1,7 @@
 .match {
     margin-top: 2rem !important; 
     padding: 10px;
-    width: 80%;
+    width: auto;
     margin: auto;
     font-size: 10px;
   }
@@ -12,13 +12,21 @@
   }
   
   .victory {
-    background-color: rgba(97, 139, 231, 0.788);
+    background-color: rgba(94, 155, 206, 0.521);
   }
   
+  .victory:hover {
+    background-color: rgba(74, 106, 175, 0.788);
+  }
+
   .defeat {
     background-color: rgba(247, 118, 118, 0.842)
   }
   
+  .defeat:hover {
+    background-color: rgba(192, 80, 80, 0.842)
+  }
+
   .ss-icon {
     width: 35px;
     height: 35px;
@@ -42,6 +50,9 @@
     display: none !important;
   }
 
+  .bg {
+    background-color: rgba(75, 27, 15, 0.664);
+  }
   @media (min-width: 600px) {
       .ally-team {
         display: flex !important;
@@ -52,28 +63,33 @@
     .enemy-team {
         display: flex !important;
       }
+
+    .match {
+      width: 90%
+    }
   }
 
   @media (min-width: 920px) {
     .match {
         font-size: 18px;
+        width: 90%;
     }
   }
 
   @media (min-width: 1200px) {
     .match {
-        width: 65%;
+        width: 75%;
     }
   }
 
   @media (min-width: 1400px) {
     .match {
-        width: 55%;
+        width: 65%;
     }
   }
 
   @media (min-width: 1800px) {
     .match {
-        width: 45%;
+        width: 55%;
     }
   }

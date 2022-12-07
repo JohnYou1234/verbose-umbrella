@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ./api/app.js",
+    "start": "nodemon --experimental-json-modules ./api/app.js",
     "build": "cd verbose_umbrella && npm install && npm run build"
   },
   "repository": {
