@@ -38,8 +38,9 @@ function Match(props) {
     let mainPlayer = playerData.mainPlayer;
     let gameInfo = gameData.gameInfo;
     let gameTimer = parseGameTime(gameInfo.gameTimer);
+    let gameResult = mainPlayer.victory ? "victory" : "defeat";
     return (
-        <Stack gap={3} className={"match victory justify-content-center"} direction="horizontal">
+        <Stack gap={3} className={`match ${gameResult} justify-content-center`} direction="horizontal">
             <div>
                 <Stack gap={1}>
                     <div>{mainPlayer.victory ? "Victory" : "Defeat"}</div>       

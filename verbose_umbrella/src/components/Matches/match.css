@@ -20,13 +20,17 @@
   }
 
   .defeat {
-    background-color: rgba(247, 118, 118, 0.842)
+    background-color: rgba(230, 135, 135, 0.842)
   }
   
   .defeat:hover {
-    background-color: rgba(192, 80, 80, 0.842)
+    background-color: rgba(187, 98, 98, 0.842)
   }
 
+  .loading-circle {
+    margin-top: 25%;
+  }
+  
   .ss-icon {
     width: 35px;
     height: 35px;

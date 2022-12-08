@@ -40,10 +40,6 @@ h2 {
   border-radius: 20px !important;
 }
 
-.loading-circle {
-  margin-top: 25%;
-}
-
 .text-left {
   text-align: left;
 }
@@ -51,8 +47,4 @@ h2 {
 div {
   font-family: 'Anybody', cursive;
   font-weight: bold;
-}
-
-.width {
-  width: 10px;
 }
