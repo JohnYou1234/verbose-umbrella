@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-
+import './search.css';
 function Search(props) {
     const [summoner, changeSummoner] = useState("");
     const navigate = useNavigate();
@@ -27,11 +27,11 @@ function Search(props) {
     return (
       <div className='search-box'>
         <h2>Verbose Umbrella</h2>
-        <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)}>
+        <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)} id='form-box'>
             <Form.Control
               id='summoner-search'
               type="text"
-              placeholder='Search Summoner'
+              placeholder='Enter name (try "park garage")'
               aria-label="Summoner's Search"
               onChange={handleInput}
               value={summoner}
