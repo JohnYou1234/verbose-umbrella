@@ -14,6 +14,7 @@ function Match(props) {
         fetch(link)
             .then(resp => {
                 if (resp.status !== 200) throw resp.status;
+                console.log('hi');
                 return resp;
             })
             .then(resp => resp.json())
@@ -42,6 +43,7 @@ function Match(props) {
     let gameInfo = gameData.gameInfo;
     let gameTimer = parseGameTime(gameInfo.gameTimer);
     let gameResult = mainPlayer.victory ? "victory" : "defeat";
+    let gold = parseGold(mainPlayer.goldEarned);
     return (
         <div className={`match ${gameResult}`}>
             <Stack onClick={handleChange} className="justify-content-center" gap={3} direction="horizontal">
@@ -72,6 +74,7 @@ function Match(props) {
                     <Stack gap="1" >
                         <div>{mainPlayer.kills + "/" + mainPlayer.deaths + "/" + mainPlayer.assists}</div>
                         <div>{mainPlayer.creepScore + " cs"}</div>
+                        <div>{gold + " gold"}</div>
                     </Stack>
                 </div>
                 <div>
@@ -82,7 +85,7 @@ function Match(props) {
 
                 <div>
                     <Stack gap={1} className="ally-team">
-                        {playerData.allyTeam.map((data) => {
+                        {playerData.allyTeam.members.map((data) => {
                             return (
                                 <Stack key={data.name} direction='horizontal' gap={1}>
                                     <Image className='ally-icon'src={data.championIcon} alt={data.champion}/>
@@ -95,7 +98,7 @@ function Match(props) {
 
                 <div>
                     <Stack gap={1} className="enemy-team">
-                        {playerData.enemyTeam.map((data) => {
+                        {playerData.enemyTeam.members.map((data) => {
                             return (
                                 <Stack key={data.name} direction='horizontal' gap={1}>
                                     <Image className='ally-icon'src={data.championIcon} alt={data.champion}/>
@@ -107,8 +110,8 @@ function Match(props) {
                 </div>
             </Stack>
             {isDetailed &&
-                <Dropdown gameData={gameData} matchId={matchId} key={matchId}
-                parseGameTime={(time) => parseGameTime(time)} itemsToDiv={(items) => itemsToDiv(items)}/>
+                <Dropdown playerData={gameData.playerData} matchId={matchId} key={matchId}
+                parseGold={(gold) => parseGold(gold)}/>
             }
         </div>
     )
@@ -147,5 +150,12 @@ function itemsToDiv(items) {
             {items[6]}
         </Stack>
     )
+}
+
+function parseGold(goldCount) {
+    if (goldCount < 1000) return goldCount;
+    let whole = Math.floor(goldCount / 1000);
+    let part = Math.floor((goldCount % 1000) / 100);
+    return `${whole}.${part}k`;
 }
 export default Match;
