@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {Image, Stack} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -23,9 +22,7 @@ function Dropdown(props) {
 
 function Team(props) {
     let team = props.team;
-    console.log(team);
     const parseGold = props.parseGold;
-
     let teammates = team.members.map((player, index) => {
         return (
                 <Row key={index}> 
@@ -50,15 +47,13 @@ function Team(props) {
                 <Col><p>{player.damage}</p></Col>
                 <Col><p>{parseGold(player.goldEarned)}</p></Col>
                 <Col xs='1'><p>{player.creepScore}</p></Col>
+                <Col xs='1'>{player.visionScore}</Col>
                 <Col xs='3' className='d-none d-md-flex'>
                     <div className='d-flex flex-row'>
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/3158.png"} alt={"hello"} />
-                        <Image className='dd-item-icon' src={"http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/2052.png"} alt={"hello"} />
+                        {player.items.map((data, index) => {
+                            if (data === 0) return <div key={index} className="item-icon bg"></div>;
+                            return <Image key={index} className='item-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/' + data + '.png'} alt={data} />
+                        })}
                     </div>
                 </Col>
                 </Row>
@@ -72,6 +67,7 @@ function Team(props) {
                 <Col>Damage</Col>
                 <Col>Gold</Col>
                 <Col xs='1'>CS</Col>
+                <Col xs='1'>VS</Col>
                 <Col xs='3' className='d-none d-md-flex'>Items</Col>
             </Row>
             {teammates}
@@ -80,5 +76,8 @@ function Team(props) {
 }
 export default Dropdown;
 /*
-champion summoner spell runes  name kda damage gold cs wards items 
+    items = items.map((data, index) => {
+        if (data === 0) return <div key={index} className="item-icon bg"></div>;
+        return <Image key={index} className='item-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/' + data + '.png'} alt={data} />
+    })
 */
