@@ -48,6 +48,7 @@ function getPlayerData(players, id) {
         player.name = data.summonerName;
         player.summoner1 = summonerSpells[data.summoner1Id];
         player.summoner2 = summonerSpells[data.summoner2Id];
+        player.visionScore = data.visionScore;
         let styles = data.perks.styles;
         for (let i = 0; i < styles.length; i++) {
             if (data.perks.styles[i].description == "primaryStyle") {
