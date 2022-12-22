@@ -1,0 +1,43 @@
+.sb-champ {
+    width: 30px;
+    height: 30px;
+}
+
+.sb-ss, .sb-rune {
+    width: 15px;
+    height: 15px;
+}
+
+.dropdown {
+    font-size: 10px;
+}
+
+.dd-item-icon {
+    width: 20px; 
+    height: 20px;
+}
+
+@media (min-width: 830px) {
+    .dd-item-icon {
+        width: 25px; 
+        height: 25px;
+    }
+    .dropdown {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 920px) {
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 1400px) {
+
+}
+
+@media (min-width: 1800px) {
+
+}

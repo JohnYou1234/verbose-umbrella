@@ -33,39 +33,38 @@ router.get('/getMatchData/:matchId/:puuid', async (req, res) => {
 
 function getPlayerData(players, id) {
     let mainPlayer = {};
-    let playerData = players.map((data) => {
-        if (id === data.puuid) {
-            mainPlayer.victory = data.win;
-            mainPlayer.championIcon = 'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/' + champions.data[data.championName].image.full;
-            mainPlayer.champion = data.championName;
-            mainPlayer.kills = data.kills;
-            mainPlayer.assists = data.assists;
-            mainPlayer.deaths = data.deaths;
-            mainPlayer.creepScore = data.totalMinionsKilled;
-            mainPlayer.summoner1 = summonerSpells[data.summoner1Id];
-            mainPlayer.summoner2 = summonerSpells[data.summoner2Id];
-            mainPlayer.items = [data.item0, data.item1, data.item2, data.item3, data.item4, data.item5, data.item6];
-            let styles = data.perks.styles;
-            for (let i = 0; i < styles.length; i++) {
-                if (data.perks.styles[i].description == "primaryStyle") {
-                    const keyStone = runes[styles[i].style].slots[0].runes.find(obj => obj.id === styles[i].selections[0].perk);
-                    mainPlayer.primaryIcon = 'https://ddragon.canisback.com/img/' + keyStone.icon;
-                } else {
-                    mainPlayer.secondaryIcon = 'https://ddragon.canisback.com/img/' + runes[styles[i].style].icon;
-                }
+    let mainPlayerTeam = -1;
+    let playerData = players.map((data, index) => {
+        let player = {};
+        player.victory = data.win;
+        player.championIcon = 'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/' + champions.data[data.championName].image.full;
+        player.name = data.summonerName;
+        player.kills = data.kills;
+        player.assists = data.assists;
+        player.deaths = data.deaths;
+        player.creepScore = data.totalMinionsKilled;
+        player.summoner1 = summonerSpells[data.summoner1Id];
+        player.summoner2 = summonerSpells[data.summoner2Id];
+        player.items = [data.item0, data.item1, data.item2, data.item3, data.item4, data.item5, data.item6];
+        let styles = data.perks.styles;
+        for (let i = 0; i < styles.length; i++) {
+            if (data.perks.styles[i].description == "primaryStyle") {
+                const keyStone = runes[styles[i].style].slots[0].runes.find(obj => obj.id === styles[i].selections[0].perk);
+                player.primaryIcon = 'https://ddragon.canisback.com/img/' + keyStone.icon;
+            } else {
+                player.secondaryIcon = 'https://ddragon.canisback.com/img/' + runes[styles[i].style].icon;
             }
         }
-        let player = {
-            name: data.summonerName,
-            championIcon: 'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/' + champions.data[data.championName].image.full,
-            champion : data.championName
+        if (id === data.puuid) {
+            mainPlayer = player;
+            mainPlayerTeam = Math.floor(index / 5);
         }
         return player;
     })
     let data = {};
     data.mainPlayer = mainPlayer;
-    data.allyTeam = playerData.slice(0, 5);
-    data.enemyTeam = playerData.slice(5, 10);
+    data.allyTeam = playerData.slice(mainPlayerTeam * 5, mainPlayerTeam * 5 + 5); // 0-5 5-10
+    data.enemyTeam = playerData.slice(5 - mainPlayerTeam * 5, 5 - mainPlayerTeam * 5 + 5); // 5-10 0-5
     return data;
 }
 

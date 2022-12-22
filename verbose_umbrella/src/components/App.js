@@ -1,4 +1,4 @@
-import Search from './Search.js';
+import Search from './Search/Search.js';
 import Matches from './Matches/Matches.js';
 import Header from './Header/Header.js'
 import {Stack} from 'react-bootstrap';

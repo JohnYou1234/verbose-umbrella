@@ -33,11 +33,13 @@ function Matches(props) {
             })
     }, [link])
     return (
-        <div className="text-center">
-            {isLoading &&   <Spinner className="loading-circle" animation="border" role="status" size="lg">
-                                <span className="visually-hidden" >Loading...</span>
-                            </Spinner>}
-            {error && <p>{error + " is the error code"}</p>}
+        <div>
+            {isLoading &&   <div className='text-center'>
+                                <Spinner className="loading-circle" animation="border" role="status" size="lg">
+                                    <span className="visually-hidden" >Loading...</span>
+                                </Spinner>
+                            </div>}
+            {error && <p className="text-center" >{error + " is the error code"}</p>}
             {(matches.length > 0 && !error) && matches.map((matchId) => {
                 return <Match playerId={playerId} key={matchId} matchId={matchId} changeError={changeError}/>
             })}

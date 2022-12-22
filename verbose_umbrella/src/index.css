@@ -26,20 +26,6 @@ h2 {
   width: 100%;
 }
 
-.search-btn {
-  margin-left: 1em !important;
-}
-
-.search-box {
-  width: 35%;
-  margin-top: 20%;
-  margin-left: 30%;
-}
-
-.search-btn, #summoner-search {
-  border-radius: 20px !important;
-}
-
 .text-left {
   text-align: left;
 }
