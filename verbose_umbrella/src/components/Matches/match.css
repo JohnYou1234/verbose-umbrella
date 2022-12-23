@@ -4,6 +4,7 @@
     width: auto;
     margin: auto;
     font-size: 10px;
+    transform: 'scale(.5)';
   }
   
   .vertical-stack {
@@ -44,6 +45,7 @@
   .item-icon {
     width: 25px;
     height: 25px;
+    margin-right: 1px;
   }
   
   .ally-icon {
@@ -62,6 +64,7 @@
   .bg {
     background-color: rgba(75, 27, 15, 0.664);
   }
+
   @media (min-width: 600px) {
       .ally-team {
         display: flex !important;

@@ -2,10 +2,14 @@ import {Image, Stack} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import './dropdown.css';
+import { Link } from "react-router-dom";
+
 function Dropdown(props) {
     const playerData = props.playerData;
+    const mainPlayer = playerData.mainPlayer;
     return (
         <div key={props.matchId} className='dropdown'>
             <hr></hr>
@@ -15,6 +19,11 @@ function Dropdown(props) {
             <hr></hr>
             <div>
                 <Team team={playerData.enemyTeam} parseGold={props.parseGold}/>
+            </div>
+            <div className='dropdown-btn'>
+                <Link to={`/match/${props.matchId}`} target="_blank" style={{ textDecoration: 'none'}}>
+                    <Button variant={mainPlayer.victory ? "primary" : "danger"}>View More Details</Button>
+                </Link>
             </div>
         </div>
     )
@@ -52,7 +61,7 @@ function Team(props) {
                     <div className='d-flex flex-row'>
                         {player.items.map((data, index) => {
                             if (data === 0) return <div key={index} className="item-icon bg"></div>;
-                            return <Image key={index} className='item-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/' + data + '.png'} alt={data} />
+                            return <Image key={index} className='item-icon ml-2' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/' + data + '.png'} alt={data} />
                         })}
                     </div>
                 </Col>
@@ -75,9 +84,3 @@ function Team(props) {
     )
 }
 export default Dropdown;
-/*
-    items = items.map((data, index) => {
-        if (data === 0) return <div key={index} className="item-icon bg"></div>;
-        return <Image key={index} className='item-icon' src={'http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/' + data + '.png'} alt={data} />
-    })
-*/

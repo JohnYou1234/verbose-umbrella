@@ -17,6 +17,11 @@
     height: 20px;
 }
 
+.dropdown-btn {
+    display: flex;
+    justify-content: center;
+    
+}
 @media (min-width: 830px) {
     .dd-item-icon {
         width: 25px; 

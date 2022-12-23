@@ -40,9 +40,11 @@ function Matches(props) {
                                 </Spinner>
                             </div>}
             {error && <p className="text-center" >{error + " is the error code"}</p>}
-            {(matches.length > 0 && !error) && matches.map((matchId) => {
-                return <Match playerId={playerId} key={matchId} matchId={matchId} changeError={changeError}/>
-            })}
+            <div className='matches'>
+                {(matches.length > 0 && !error) && matches.map((matchId) => {
+                    return <Match playerId={playerId} key={matchId} matchId={matchId} changeError={changeError}/>
+                })}
+            </div>
         </div>
     )
 }
