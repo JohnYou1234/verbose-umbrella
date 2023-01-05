@@ -15,7 +15,6 @@ function Match(props) {
         fetch(link)
             .then(resp => {
                 if (resp.status !== 200) throw resp.status;
-                console.log('hi');
                 return resp;
             })
             .then(resp => resp.json())

@@ -12,7 +12,9 @@ router.get('/getPlayerData/:name', async (req, res) => {
             .then(resp => resp.json())
             .then(data => {
                 if (!data.puuid && data.status.status_code == '404') {
-                    throw "No User Found"
+                    throw "Server Not Working"
+                } else if (data.status.status_code == '500') {
+                    throw "Error with Riot's Server"
                 } else {
                     return data.puuid;
                 }

@@ -1,8 +1,9 @@
 import Search from './Search/Search.js';
 import Matches from './Matches/Matches.js';
-import DetailedMatch from './DetailedMatched/DetailedMatch.js';
+import DetailedMatch from './DetailedMatch/DetailedMatch.js';
 import Header from './Header/Header.js'
-import {Stack} from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+
 import {
   BrowserRouter,
   Routes,
