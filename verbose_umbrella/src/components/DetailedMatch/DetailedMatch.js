@@ -6,11 +6,13 @@ import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './detailedMatch.css';
+import { darkmagenta } from 'color-name';
 
 function DetailedMatch(props) {
     const [error, changeError] = useState('');
     const [isLoading, changeLoad] = useState(false);
     const [players, loadPlayers] = useState([]);
+    const [category, changeCategory] = useState("all");
     let { matchId } = useParams();
 
     const isDesktop = useMediaQuery({ minWidth: 998 })
@@ -28,103 +30,71 @@ function DetailedMatch(props) {
             })
             .then(result => {
                 if (result.status === 'error') throw result.error
-                changeLoad(false);
                 loadPlayers(result.playerData.players)
             })
             .catch(err => {
                 changeLoad(false);
-                console.log(err);
             })
     }, [0])
+    if (players.length > 0 && isLoading) changeLoad(false);
 
-    return (
-        <div>
-            {isLoading &&   <div className='text-center'>
-                                <Spinner className="loading-circle" animation="border" role="status" size="lg">
-                                    <span className="visually-hidden" >Loading...</span>
-                                </Spinner>
-                            </div>}
-            {error && <p className="text-center" >{error + " is the error code"}</p>}
-            {!isLoading && isDesktop ? 
-                desktopTable(players)
-            : 
-            <div id='detailed-table'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>                    
-                                <Dropdown className='hello'>
-                                    <Dropdown.Toggle variant="success">
-                                        All
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item>All</Dropdown.Item>
-                                        <Dropdown.Item>Combat</Dropdown.Item>
-                                        <Dropdown.Item>Disruption</Dropdown.Item>
-                                        <Dropdown.Item>Support</Dropdown.Item>
-                                        <Dropdown.Item>Gold</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tempHelper("KDA", "20/3/20", 5)}
-                        {tempHelper("Largest Multi Kill", "4", 5)}
-                        {tempHelper("CC Score", "23", 5)}
-                        {tempHelper("Random ULTARA LONG NAME", "2342344",5)}
-                        {tempHelper("Creep Score", "322",5)}
-                        {tempHelper("Total Damage to Champions", "32444",5)}
-                        {tempHelper("Total Damage to Turrets", "6000",5)}
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <th>                    
-                            </th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                            <th><Image roundedCircle className='champ-headers' src='http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/Gangplank.png'/></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tempHelper("KDA", "20/3/20", 5)}
-                        {tempHelper("Largest Multi Kill", "4", 5)}
-                        {tempHelper("CC Score", "23", 5)}
-                        {tempHelper("Random ULTARA LONG NAME", "2342344",5)}
-                        {tempHelper("Creep Score", "322",5)}
-                        {tempHelper("Total Damage to Champions", "32444",5)}
-                        {tempHelper("Total Damage to Turrets", "6000",5)}
-                    </tbody>
-                </table>
-            </div>}
-        </div>
-    )
-}
-
-function desktopTable(players) {
-    let icons = players.map(data => {
-        console.log(data.championIcon);
-        return <th><Image roundedCircle className='champ-headers' src={data.championIcon}/></th>
+    let icons = function(players) {
+        return players.map(player => {
+            return <th key={player.championIcon}><Image roundedCircle className='champ-headers' src={player.championIcon}/></th>
+        })
+    }
+    
+    let playerData =  players.map(player => {
+        return {
+            ...player.communication,
+            ...player.damage,
+            ...player.gold,
+            ...player.objectives,
+            ...player.support
+        }
     })
-    return (
-        <div id='detailed-table'>
+    function desktopTable(players) {
+        return (
+        <table>
+            <thead>
+                <tr>
+                    <th>                    
+                        <Dropdown className='hello'>
+                            <Dropdown.Toggle variant="success">
+                                All
+                            </Dropdown.Toggle>
+    
+                            <Dropdown.Menu>
+                                <Dropdown.Item>All</Dropdown.Item>
+                                <Dropdown.Item>Combat</Dropdown.Item>
+                                <Dropdown.Item>Disruption</Dropdown.Item>
+                                <Dropdown.Item>Support</Dropdown.Item>
+                                <Dropdown.Item>Gold</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </th>
+                    {icons(players)}
+                </tr>
+            </thead>
+            {
+                showStats(playerData)
+            }
+        </table>
+        )
+    }
+    
+    function Table(players, start, end, includeBtn) {
+        return (
             <table>
                 <thead>
                     <tr>
+                        {includeBtn ? 
                         <th>                    
                             <Dropdown className='hello'>
                                 <Dropdown.Toggle variant="success">
                                     All
                                 </Dropdown.Toggle>
-
+        
                                 <Dropdown.Menu>
                                     <Dropdown.Item>All</Dropdown.Item>
                                     <Dropdown.Item>Combat</Dropdown.Item>
@@ -134,33 +104,56 @@ function desktopTable(players) {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </th>
-                        {icons}
+                        : <th> </th>
+                        }
+                        {icons(players.slice(start, end))}
                     </tr>
                 </thead>
-                <tbody>
-                    {tempHelper("KDA", "20/3/20")}
-                    {tempHelper("Largest Multi Kill", "4")}
-                    {tempHelper("CC Score", "23")}
-                    {tempHelper("Random ULTARA LONG NAME", "2342344")}
-                    {tempHelper("Creep Score", "322")}
-                    {tempHelper("Total Damage to Champions", "32444")}
-                    {tempHelper("Total Damage to Turrets", "6000")}
-                </tbody>
+                {showStats(playerData.slice(start, end))}
             </table>
+        )
+    }
+    return (
+        <div>
+            {isLoading &&   <div className='text-center'>
+                                <Spinner className="loading-circle" animation="border" role="status" size="lg">
+                                    <span className="visually-hidden" >Loading...</span>
+                                </Spinner>
+                            </div>}
+            {error && <p className="text-center" >{error + " is the error code"}</p>}
+            {!isLoading && 
+            <div id='detailed-table'>
+                {isDesktop ? 
+                    Table(players, 0, 10, true)
+                : 
+                <>
+                {Table(players, 0, 5, true)}
+                {Table(players, 5, 10)}
+                </>}
+            </div>}
         </div>
     )
 }
 
-function tempHelper(name, stat, numb = 10) {
-    let list = [];
-    for (let i = 0; i < numb; i++) {
-        list.push(<td key={i}>{stat}</td>)
+function showStats(playerData) {
+    if (playerData.length == 0) return <p>Fail no players</p>
+    let rows = [];
+    for (const category in playerData[0]) {
+        rows.push(category);
     }
     return (
-        <tr>
-            <th>{name}</th>
-            {list}
-        </tr>
+        <tbody>
+            {rows.map(category => {
+                return (
+                    <tr key={category}>
+                        <th>{category}</th>
+                        {playerData.map(playerData => {
+                            return <td key={playerData.name}>{playerData[category]}</td>
+                        })}
+                    </tr>
+                )
+            })}
+        </tbody>
     )
 }
 export default DetailedMatch;
