@@ -1,7 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-const { default: champions } = await import('./data/champions.json', {assert: {type: "json",},});
-
+import champions from './data/champions/json';
 const router = express.Router();
 router.get('/getMatch/:matchId', async (req, res) => {
     const API_KEY = req.API_KEY
