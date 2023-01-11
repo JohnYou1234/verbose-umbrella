@@ -6,7 +6,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './detailedMatch.css';
-import { darkmagenta } from 'color-name';
 
 function DetailedMatch(props) {
     const [error, changeError] = useState('');
@@ -36,53 +35,55 @@ function DetailedMatch(props) {
                 changeLoad(false);
             })
     }, [0])
+
     if (players.length > 0 && isLoading) changeLoad(false);
 
-    let icons = function(players) {
+    let championIcons = function(players) { 
         return players.map(player => {
-            return <th key={player.championIcon}><Image roundedCircle className='champ-headers' src={player.championIcon}/></th>
+            return <th className='column-header' key={player.championIcon}><Image roundedCircle className='champ-headers' src={player.championIcon}/></th>
         })
     }
     
     let playerData =  players.map(player => {
+        if (category === 'all') 
+            return {
+                ...player.communication,
+                ...player.damage,
+                ...player.gold,
+                ...player.objectives,
+                ...player.support
+            }
+
         return {
-            ...player.communication,
-            ...player.damage,
-            ...player.gold,
-            ...player.objectives,
-            ...player.support
+            ...player[category]
         }
     })
-    function desktopTable(players) {
-        return (
-        <table>
-            <thead>
-                <tr>
-                    <th>                    
-                        <Dropdown className='hello'>
-                            <Dropdown.Toggle variant="success">
-                                All
-                            </Dropdown.Toggle>
     
-                            <Dropdown.Menu>
-                                <Dropdown.Item>All</Dropdown.Item>
-                                <Dropdown.Item>Combat</Dropdown.Item>
-                                <Dropdown.Item>Disruption</Dropdown.Item>
-                                <Dropdown.Item>Support</Dropdown.Item>
-                                <Dropdown.Item>Gold</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </th>
-                    {icons(players)}
-                </tr>
-            </thead>
-            {
-                showStats(playerData)
-            }
-        </table>
+    function handleCategoryChange(e) {
+        changeCategory(e.target.value);
+    }
+
+    function showStats(playerData) {
+        if (playerData.length == 0) return <tbody><tr><td>No players atm</td></tr></tbody>
+        let rows = [];
+        for (const category in playerData[0]) {
+            rows.push(category);
+        }
+        return (
+            <tbody>
+                {rows.map((category, i) => {
+                    return (
+                        <tr key={i}>
+                            <th>{camelToWords(category)}</th>
+                            {playerData.map((player, i) => {
+                                return <td key={i}>{player[category]}</td>
+                            })}
+                        </tr>
+                    )
+                })}
+            </tbody>
         )
     }
-    
     function Table(players, start, end, includeBtn) {
         return (
             <table>
@@ -90,23 +91,18 @@ function DetailedMatch(props) {
                     <tr>
                         {includeBtn ? 
                         <th>                    
-                            <Dropdown className='hello'>
-                                <Dropdown.Toggle variant="success">
-                                    All
-                                </Dropdown.Toggle>
-        
-                                <Dropdown.Menu>
-                                    <Dropdown.Item>All</Dropdown.Item>
-                                    <Dropdown.Item>Combat</Dropdown.Item>
-                                    <Dropdown.Item>Disruption</Dropdown.Item>
-                                    <Dropdown.Item>Support</Dropdown.Item>
-                                    <Dropdown.Item>Gold</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <select name="categoryToggle" id="categoryToggle" onChange={handleCategoryChange}>
+                                <option value="all">All</option>
+                                <option value="communication">Communication</option>
+                                <option value="damage">Damage</option>
+                                <option value="gold">Gold</option>
+                                <option value="objectives">Objectives</option>
+                                <option value="support">Support</option>
+                            </select>
                         </th>
                         : <th> </th>
                         }
-                        {icons(players.slice(start, end))}
+                        {championIcons(players.slice(start, end))}
                     </tr>
                 </thead>
                 {showStats(playerData.slice(start, end))}
@@ -121,7 +117,7 @@ function DetailedMatch(props) {
                                 </Spinner>
                             </div>}
             {error && <p className="text-center" >{error + " is the error code"}</p>}
-            {!isLoading && 
+            {(!isLoading) && 
             <div id='detailed-table'>
                 {isDesktop ? 
                     Table(players, 0, 10, true)
@@ -135,25 +131,11 @@ function DetailedMatch(props) {
     )
 }
 
-function showStats(playerData) {
-    if (playerData.length == 0) return <p>Fail no players</p>
-    let rows = [];
-    for (const category in playerData[0]) {
-        rows.push(category);
-    }
-    return (
-        <tbody>
-            {rows.map(category => {
-                return (
-                    <tr key={category}>
-                        <th>{category}</th>
-                        {playerData.map(playerData => {
-                            return <td key={playerData.name}>{playerData[category]}</td>
-                        })}
-                    </tr>
-                )
-            })}
-        </tbody>
-    )
+
+function camelToWords(category) {
+    category = category.replace(/([a-z])([A-Z])/g, '$1 $2'); // separates all camels
+    category = category.charAt(0).toUpperCase() + category.slice(1);
+    return category;
 }
+
 export default DetailedMatch;

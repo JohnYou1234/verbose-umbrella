@@ -15,7 +15,6 @@ router.get('/getMatchData/:matchId/:puuid', async (req, res) => {
         await fetch(link)
             .then(resp => resp.json())
             .then(data => {
-                console.log(data);
                 let playerData = getPlayerData(data.info.participants, id);
                 let gameData = getGameData(data);
                 res.send({
