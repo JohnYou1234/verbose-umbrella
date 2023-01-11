@@ -9,13 +9,19 @@ router.get('/getPlayerData/:name', async (req, res) => {
     let id;
     try {
         await fetch(link)
-            .then(resp => resp.json())
+            .then(resp => {
+                if (resp.status === 404) {
+                    throw "Server Not Working"
+                } else if (resp.status === 500) {
+                    throw "Error with Riot's Server"
+                } 
+                return resp.json()
+            })
             .then(data => {
-                if (!data.puuid && data.status.status_code == '404') {
-                    throw "No User Found"
-                } else {
-                    return data.puuid;
-                }
+                if (!data.puuid) {
+                    throw "User not found"
+                } 
+                return data.puuid;
             })
             .then(puuid => {
                 id = puuid;

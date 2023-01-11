@@ -1,0 +1,20 @@
+.champ-headers {
+    width: 30px;
+    height: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#detailed-table {
+    width: fit-content;
+    margin: auto;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #d6d6d6;
+    font-size: 9pt;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.column-header {
+    width: 60px;
+}

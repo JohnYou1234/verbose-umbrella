@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {Stack, Image} from 'react-bootstrap';
 import Dropdown from './Dropdown.js';
+
 function Match(props) {
     const [isLoading, changeLoad] = useState(true);
     const [gameData, changeGameData] = useState({});
@@ -14,7 +15,6 @@ function Match(props) {
         fetch(link)
             .then(resp => {
                 if (resp.status !== 200) throw resp.status;
-                console.log('hi');
                 return resp;
             })
             .then(resp => resp.json())

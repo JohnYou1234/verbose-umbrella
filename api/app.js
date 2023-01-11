@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 // route imports
 import playerRouter from './routes/playerData.js';
 import matchRouter from './routes/matchData.js';
+import detailedMatchRouter from './routes/detailedMatchData.js'
 const app = express();
 const PORT = process.env.PORT || 3080;
 app.use(express.json());
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
 })
 app.use('/api/players', playerRouter);
 app.use('/api/matches', matchRouter);
-
+app.use('/api/detailed', detailedMatchRouter)
 app.listen(PORT, () => {
     console.log(`Server listening on the port::${PORT}`);
 });

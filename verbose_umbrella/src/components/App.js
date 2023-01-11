@@ -1,7 +1,9 @@
 import Search from './Search/Search.js';
 import Matches from './Matches/Matches.js';
+import DetailedMatch from './DetailedMatch/DetailedMatch.js';
 import Header from './Header/Header.js'
-import {Stack} from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+
 import {
   BrowserRouter,
   Routes,
@@ -17,6 +19,10 @@ function App(props) {
 
             <Route path="/results/:name" element={
                 <Matches/>
+            } />
+
+            <Route path="/match/:matchId" element={
+              <DetailedMatch />
             } />
           </Routes>
       </BrowserRouter>
