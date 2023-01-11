@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import champions from './data/champions/json';
+import champions from './data/champions.json';
 const router = express.Router();
 router.get('/getMatch/:matchId', async (req, res) => {
     const API_KEY = req.API_KEY
