@@ -26,7 +26,7 @@ function Search(props) {
 
     return (
       <div className='search-box'>
-        <h2>Verbose Umbrella</h2>
+        <h2>The Greatest The Best</h2>
         <InputGroup as="form" className="mb-3" onSubmit={() => handleOnSubmit(summoner)} id='form-box'>
             <Form.Control
               id='summoner-search'
