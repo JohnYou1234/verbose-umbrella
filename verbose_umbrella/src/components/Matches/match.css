@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Basic&display=swap');
+
 .match {
     margin-top: 2rem !important; 
     padding: 10px;
@@ -5,6 +7,8 @@
     margin: auto;
     font-size: 10px;
     transform: 'scale(.5)';
+    color: rgb(212, 212, 212);
+    font-family: 'Basic', sans-serif;
   }
   
   .vertical-stack {
@@ -18,20 +22,20 @@
   }
   
   .victory {
-    background-color: rgba(94, 155, 206, 0.521);
+    background-color: rgba(15, 133, 230, 0.521);
   }
   
-  .victory:hover {
-    background-color: rgba(74, 106, 175, 0.788);
+  .victory:hover, .defeat:hover {
+    background-color: rgba(73, 73, 73, 0.788);
   }
 
   .defeat {
-    background-color: rgba(230, 135, 135, 0.842)
+    background-color: rgba(240, 22, 22, 0.842)
   }
   
-  .defeat:hover {
-    background-color: rgba(187, 98, 98, 0.842)
-  }
+  /* .defeat:hover {
+    background-color: rgba(161, 63, 63, 0.842)
+  } */
 
   .loading-circle {
     margin-top: 25%;
