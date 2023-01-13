@@ -2,9 +2,9 @@
 
 The front end portion
 
-## Future Patches
-Add nav bar
-Regions
-Be capable of displaying a match 
-More Documentation
-Error handling
+## Current Problems being worked on
+Front Page mobile responsiveness
+Does not scroll infinitely
+Misaligned due to bootstrap
+Table not graph
+Header double lines after smaller pixels of 600 
