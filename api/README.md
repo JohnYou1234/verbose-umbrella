@@ -1,9 +1,10 @@
 # Verbose Umbrella API
 
 ## Api
-/getMatchData/:matchId/:puuid
+
 ## Future Plans
 Regions
-Be capable of sending match data, preferably also capable of sending exact amount
-More Documentation
-Error handling
+User profile information
+    * rank level gaames played winrates maybe 
+Save match history and user profile in separate database, have update function 
+Implement tests
